@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Culture Night | Alien Hunt</title>
+    <meta name="theme-color" content="#000000">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root { --gold: #d4af37; --gold-dark: #aa8922; }
+        
+        /* Ақ жолақты болдырмау және экранды толық қамту */
+        html {
+            background-color: #000;
+            height: -webkit-fill-available;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: radial-gradient(circle at center, rgba(0,0,0,0.5) 0%, rgba(0,0,0,1) 100%), 
+                        url('https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            /* Мобильді браузерлерде fixed қате көрсетуі мүмкін, сондықтан scroll немесе түсті бекіту керек */
+            background-attachment: scroll;
+            min-height: 100vh;
+            min-height: -webkit-fill-available;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .heading-font { font-family: 'Playfair Display', serif; }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .gold-border { border-top: 3px solid var(--gold); }
+
+        /* iOS-тағы инпуттардың автоматты жақындауын болдырмау үшін мин. 16px */
+        .input-style {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            -webkit-appearance: none;
+            font-size: 16px; 
+        }
+        
+        .input-style:focus {
+            border-color: var(--gold);
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+            outline: none;
+        }
+
+        .btn-gold {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            color: #000;
+            font-weight: 700;
+            letter-spacing: 1px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        .btn-gold:active { transform: scale(0.98); opacity: 0.9; }
+        .btn-gold:disabled { opacity: 0.5; transform: none; }
+
+        /* Тек телефонда көрсету */
+        @media (min-width: 1025px) {
+            .mobile-only { display: none; }
+            .desktop-warning { display: flex; }
+        }
+        @media (max-width: 1024px) {
+            .desktop-warning { display: none; }
+        }
+
+        .fade-in { animation: fadeIn 0.8s ease-out forwards; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Төменгі жақтағы бос орын (safe area) */
+        main { padding-bottom: env(safe-area-inset-bottom); }
+    </style>
+</head>
+<body>
+
+    <div class="desktop-warning fixed inset-0 bg-black z-[100] flex-col items-center justify-center text-center p-10">
+        <div class="mb-6 text-6xl">📱</div>
+        <h1 class="text-3xl font-bold mb-4 heading-font text-white">MOBILE ONLY</h1>
+        <p class="text-gray-400 max-w-xs mx-auto">Бұл сайт тек мобильді құрылғыларға арналған. Өтінеміз, телефоныңыздан ашыңыз.</p>
+    </div>
+
+    <div class="mobile-only min-h-screen flex flex-col">
+        <nav class="flex justify-between items-center px-6 py-5 backdrop-blur-xl bg-black/40 sticky top-0 z-50 border-b border-white/5 pt-[env(safe-area-inset-top)]">
+            <div class="heading-font font-bold text-xl tracking-tighter text-white">
+                <img src="https://avatars.mds.yandex.net/i?id=eafa2bfb868abe069fa43f2bb272320ddb96d4db-7178390-images-thumbs&n=13" alt="logo" class="w-[100px] mt-[-5px]">
+            </div>
+
+            <div class="flex items-center space-x-2 bg-white/5 px-4 py-2 rounded-2xl border border-white/10 select-none">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-[--gold]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+                </svg>
+                <select id="langSelect" onchange="changeLanguage()" class="bg-transparent text-[11px] font-bold outline-none border-none cursor-pointer appearance-none uppercase tracking-widest text-white">
+                    <option value="kz" class="text-black">Қаз</option>
+                    <option value="en" class="text-black">Eng</option>
+                    <option value="ru" class="text-black">Рус</option>
+                </select>
+            </div>
+        </nav>
+
+        <main class="flex-grow flex flex-col items-center px-6 pt-10 pb-12">
+            <header class="text-center mb-10 fade-in">
+                <h1 id="title" class="heading-font text-4xl font-bold mb-3 leading-tight">Ұлттық мәдениет кеші</h1>
+                <div class="h-1 w-16 bg-[--gold] mx-auto rounded-full mb-3"></div>
+                <p id="subtitle" class="text-white/60 font-light tracking-widest uppercase text-[9px]">Grand Cultural Celebration 2026</p>
+            </header>
+
+            <div id="regForm" class="glass-card gold-border w-full max-w-sm p-7 rounded-[30px] fade-in">
+                <div class="mb-6">
+                    <label id="labelName" class="block text-[10px] uppercase tracking-[2px] font-bold mb-3 text-[--gold]">Толық аты-жөніңіз</label>
+                    <input type="text" id="userName" class="input-style w-full p-4 rounded-xl text-white placeholder-white/20" placeholder="...">
+                    <p id="nameHint" class="text-[9px] text-white/40 mt-3 flex items-center">
+                        <span class="mr-2 inline-block w-1 h-1 bg-[--gold] rounded-full"></span>
+                        Бэйджиктегі атыңызды айнытпай көшіріңіз
+                    </p>
+                </div>
+
+                <div class="mb-8">
+                    <label id="labelTeam" class="block text-[10px] uppercase tracking-[2px] font-bold mb-3 text-[--gold]">Командаңызды таңдаңыз</label>
+                    <div class="relative">
+                        <select id="userTeam" class="input-style w-full p-4 rounded-xl text-white appearance-none">
+                            <option value="Team 1" class="text-black">1 Team</option>
+                            <option value="Team 2" class="text-black">2 Team</option>
+                            <option value="Team 3" class="text-black">3 Team</option>
+                            <option value="Team 4" class="text-black">4 Team</option>
+                        </select>
+                        <div class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-[--gold] text-xs">▼</div>
+                    </div>
+                </div>
+
+                <button onclick="register()" id="btnSubmit" class="btn-gold w-full py-4 rounded-xl shadow-xl uppercase text-xs tracking-widest">ЖІБЕРУ</button>
+            </div>
+
+            <div id="resultSection" class="hidden w-full max-w-sm space-y-5 fade-in">
+                <div class="glass-card p-7 rounded-[30px] border border-[--gold]/30 relative">
+                    <div class="flex items-center justify-between mb-6">
+                        <h3 id="clueTitle" class="heading-font text-xl font-bold text-[--gold]">Наводкалар:</h3>
+                        <span class="text-[9px] bg-[--gold]/20 text-[--gold] px-3 py-1 rounded-full border border-[--gold]/30 uppercase font-bold tracking-tighter">Top Secret</span>
+                    </div>
+                    <ul id="clueList" class="space-y-4"></ul>
+                </div>
+                
+                <div class="text-center space-y-4">
+                    <p id="warning" class="text-red-500 font-bold text-[10px] uppercase tracking-widest animate-pulse">Құпияны сақтаңыз!</p>
+                    <div class="bg-white/5 border border-white/10 p-4 rounded-2xl">
+                        <p id="prize" class="text-[10px] text-white/70 italic leading-relaxed">Пришелецті тапқан адамды арнайы сыйлық күтеді!</p>
+                    </div>
+                    
+                    <button onclick="resetRegistration()" class="mt-6 text-[9px] text-white/30 uppercase tracking-[2px] py-2">
+                        ↺ Тіркелуді қайта бастау / Reset
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const translations = {
+            kz: { title: "Ұлттық мәдениет кеші", subtitle: "Grand Cultural Celebration 2026", labelName: "Толық аты-жөніңіз", nameHint: "Бэйджиктегі атыңызды айнытпай көшіріп жазыңыз!", labelTeam: "Командаңызды таңдаңыз", btnSubmit: "ЖІБЕРУ", clueTitle: "Наводкалар:", warning: "Құпияны сақтаңыз!", prize: "Пришелецті тапқан адамды арнайы сыйлық күтеді!" },
+            en: { title: "Cultural Heritage Night", subtitle: "Grand Cultural Celebration 2026", labelName: "Full Name", nameHint: "Copy the name exactly from your badge!", labelTeam: "Select Your Team", btnSubmit: "SEND", clueTitle: "Your Clues:", warning: "Keep this a secret!", prize: "A special prize awaits the one who finds the alien!" },
+            ru: { title: "Вечер нац. культуры", subtitle: "Grand Cultural Celebration 2026", labelName: "Полное имя", nameHint: "Скопируйте имя точно так же, как на бейджике!", labelTeam: "Выберите команду", btnSubmit: "ОТПРАВИТЬ", clueTitle: "Ваши наводки:", warning: "Соблюдайте секретность!", prize: "Того, кто найдет пришельца, ждет приз!" }
+        };
+
+        const allClues = [
+            { text: {kz: "Ол үнемі ұйымдастырушылар мен вожатыйлардың қасында жүреді", en: "He stays close to the organizers and counselors all the time", ru: "Он всё время держится рядом с организаторами и вожатыми"}, isTrue: false },
+            { text: {kz: "Ол мүмкіндік болса да, тәтті жеген емес", en: "He didn't eat sweets, even when he could", ru: "Он не ел сладкое, даже когда есть возможность"}, isTrue: true },
+            { text: {kz: "Оның денесінде салынған белгі бар (қаламмен салынған суретке ұқсайды, бірақ қайталанатын элементтерден тұрады)", en: "He has a sign painted on his body (looks like a simple pen drawing, but consists of repeating elements)", ru: "У него есть знак, нарисованный на теле (выглядит как рисунок ручкой, но состоит из повторяющихся элементов)"}, isTrue: true },
+            { text: {kz: "Оның өз мақсатында қолданылмайтын аксессуары бар", en: "He has an accessory that he uses for other purposes", ru: "У него есть аксессуар, которым он пользуется не по назначению"}, isTrue: true },
+            { text: {kz: "Ол басқалардың айтқанын қайталағанды өте жақсы көреді", en: "He likes to repeat himself after others", ru: "Очень любит повторять за другими"}, isTrue: true }
+        ];
+
+        function getFixedClues() {
+            let saved = localStorage.getItem('alien_hunt_clues');
+            if (saved) return JSON.parse(saved);
+
+            let clues = [];
+            let pool = [...allClues];
+            while(clues.length < 2) {
+                let idx = Math.floor(Math.random() * pool.length);
+                let selected = pool.splice(idx, 1)[0];
+                clues.push(selected);
+                if(clues.length === 2 && !clues[0].isTrue && !clues[1].isTrue) return getFixedClues();
+            }
+            
+            localStorage.setItem('alien_hunt_clues', JSON.stringify(clues));
+            return clues;
+        }
+
+        function changeLanguage() {
+            const lang = document.getElementById('langSelect').value;
+            Object.keys(translations[lang]).forEach(key => {
+                const el = document.getElementById(key);
+                if(el) el.innerText = translations[lang][key];
+            });
+            if(localStorage.getItem('alien_hunt_registered')) showClues(getFixedClues());
+        }
+
+        async function register() {
+            const name = document.getElementById('userName').value.trim();
+            const team = document.getElementById('userTeam').value;
+            if(!name) return alert("Атыңызды жазыңыз!");
+
+            const btn = document.getElementById('btnSubmit');
+            const originalText = btn.innerText;
+            btn.innerText = "...";
+            btn.disabled = true;
+
+            const myClues = getFixedClues();
+            const clueTextsForSheet = myClues.map(c => c.text.en + (c.isTrue ? "" : " (FALSE)")).join(" | ");
+            const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbybMT3yq44dAupUxNlp-NIYmaZDBSbCEfj3567pjOVH6DzU4cytZ8bGgIw_7g8DGejeCg/exec";
+            
+            try {
+                await fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: JSON.stringify({ name, team, clues: clueTextsForSheet }) });
+                localStorage.setItem('alien_hunt_registered', "true");
+                showClues(myClues);
+            } catch(e) {
+                localStorage.setItem('alien_hunt_registered', "true");
+                showClues(myClues);
+            }
+        }
+
+        function showClues(clues) {
+            const lang = document.getElementById('langSelect').value;
+            const list = document.getElementById('clueList');
+            list.innerHTML = "";
+            clues.forEach(c => {
+                const li = document.createElement('li');
+                li.className = "flex items-start space-x-3 bg-white/5 p-4 rounded-xl border border-white/5";
+                li.innerHTML = `<span class="text-[--gold] mt-1 text-[10px]">◆</span> <span class="text-[13px] font-light leading-relaxed text-white">${c.text[lang]}</span>`;
+                list.appendChild(li);
+            });
+            document.getElementById('regForm').classList.add('hidden');
+            document.getElementById('resultSection').classList.remove('hidden');
+            window.scrollTo(0,0);
+        }
+
+        function resetRegistration() {
+            if(confirm("Тіркелуді қайта бастау керек пе? Наводкалар өзгермейді.")) {
+                localStorage.removeItem('alien_hunt_registered');
+                document.getElementById('userName').value = "";
+                document.getElementById('regForm').classList.remove('hidden');
+                document.getElementById('resultSection').classList.add('hidden');
+                const btn = document.getElementById('btnSubmit');
+                btn.disabled = false;
+                btn.innerText = translations[document.getElementById('langSelect').value].btnSubmit;
+            }
+        }
+
+        window.onload = () => {
+            if(localStorage.getItem('alien_hunt_registered')) {
+                showClues(getFixedClues());
+            }
+            changeLanguage();
+        };
+    </script>
+</body>
+</html>
