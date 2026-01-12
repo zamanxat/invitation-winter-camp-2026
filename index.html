@@ -223,7 +223,7 @@
         async function register() {
             const name = document.getElementById('userName').value.trim();
             const team = document.getElementById('userTeam').value;
-            if(!name) return alert("Атыңызды жазыңыз!");
+            if(!name) return alert("Атыңызды жазыңыз / Enter your name");
 
             const btn = document.getElementById('btnSubmit');
             const originalText = btn.innerText;
@@ -260,7 +260,7 @@
         }
 
         function resetRegistration() {
-            if(confirm("Тіркелуді қайта бастау керек пе? Наводкалар өзгермейді.")) {
+            if(confirm("Тіркелуді қайта бастау / RESET")) {
                 localStorage.removeItem('alien_hunt_registered');
                 document.getElementById('userName').value = "";
                 document.getElementById('regForm').classList.remove('hidden');
